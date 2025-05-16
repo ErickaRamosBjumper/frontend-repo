@@ -6,7 +6,7 @@
     <div v-else-if="error">{{ error }}</div>
     <ul v-else>
       <li v-for="user in users" :key="user.id">
-        {{ user.name }} - {{ user.email }}
+        {{ user.username }} - {{ user.email }}
       </li>
     </ul>
   </div>
@@ -27,7 +27,7 @@ export default {
   async created() {
     try {
       const { data } = await axios.get('/api/users/')
-      this.users = data
+      this.users = data.results
       this.loading = false
     } catch (error) {
       this.error = error.message
